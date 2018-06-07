@@ -1,0 +1,24 @@
+nome do banco: 4storage
+Usuario: root
+Senha:
+
+use 4storage;
+
+create table usuario(usuario_id tinyint not null auto_increment,
+usuario_nome varchar(20),
+usuario_email varchar(40),
+usuario_senha varchar(20),
+usuario_espaco_max double,
+usuario_espaco_livre double, primary key(usuario_id));
+
+Tem que ficar assim quando der o comando "describe usuario;" :
++----------------------+-------------+------+-----+---------+----------------+
+| Field                | Type        | Null | Key | Default | Extra          |
++----------------------+-------------+------+-----+---------+----------------+
+| usuario_id           | tinyint(4)  | NO   | PRI | NULL    | auto_increment |
+| usuario_nome         | varchar(20) | YES  |     | NULL    |                |
+| usuario_email        | varchar(40) | YES  |     | NULL    |                |
+| usuario_senha        | varchar(20) | YES  |     | NULL    |                |
+| usuario_espaco_max   | double      | YES  |     | NULL    |                |
+| usuario_espaco_livre | double      | YES  |     | NULL    |                |
++----------------------+-------------+------+-----+---------+----------------+
