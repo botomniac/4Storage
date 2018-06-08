@@ -4,75 +4,75 @@ import java.util.Date;
 
 public class Documento {
 
-    private int idDoc;
-    private String nomeDoc;
-    private double tamanho;
-    private Date dataUpload;
-    private String uploader;
+	private int idDoc;
+	private String nomeDoc;
+	private double tamanho;
+	private Date dataUpload;
+	private String uploader;
 
-    public String getNomeDoc() {
-        return nomeDoc;
-    }
+	public String getNomeDoc() {
+		return nomeDoc;
+	}
 
-    public void setNomeDoc(String nomeDoc) {
-        this.nomeDoc = nomeDoc;
-    }
+	public void setNomeDoc(String nomeDoc) {
+		this.nomeDoc = nomeDoc;
+	}
 
-    public int getIdDoc() {
-        return idDoc;
-    }
+	public int getIdDoc() {
+		return idDoc;
+	}
 
-    public void setIdDoc(int codDoc) {
-        this.idDoc = codDoc;
-    }
+	public void setIdDoc(int codDoc) {
+		this.idDoc = codDoc;
+	}
 
-    public double getTamanho() {
-        return tamanho;
-    }
+	public double getTamanho() {
+		return tamanho;
+	}
 
-    public void setTamanho(double tamanho) {
-        this.tamanho = tamanho;
-    }
+	public void setTamanho(double tamanho) {
+		this.tamanho = tamanho;
+	}
 
-    public Date getDataUpload() {
-        return dataUpload;
-    }
+	public Date getDataUpload() {
+		return dataUpload;
+	}
 
-    public void setDataUpload(Date dataUpload) {
-        this.dataUpload = dataUpload;
-    }
+	public void setDataUpload(Date dataUpload) {
+		this.dataUpload = dataUpload;
+	}
 
-    public String getUploader() {
-        return uploader;
-    }
+	public String getUploader() {
+		return uploader;
+	}
 
-    public void setUploader(String uploader) {
-        this.uploader = uploader;
-    }
+	public void setUploader(String uploader) {
+		this.uploader = uploader;
+	}
 
-    @Override
-    public String toString() {
-        return "Documento: " + getNomeDoc();
-    }
+	@Override
+	public String toString() {
+		return "Documento: " + getNomeDoc();
+	}
 
-    public void moveDoc() {
+	public void moveDoc() {
 
-    }
+	}
 
-    public void copiaDoc() {
+	public void copiaDoc() {
 
-    }
+	}
 
-    public void excluiDoc() {
+	public void excluiDoc() {
 
-    }
+	}
 
-    public void renomeiaDoc() {
+	public void renomeiaDoc() {
 
-    }
+	}
 
-    public void visualizaDoc() {
+	public void visualizaDoc() {
 
-    }
+	}
 
 }

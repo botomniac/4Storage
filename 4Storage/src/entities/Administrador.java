@@ -2,13 +2,13 @@ package entities;
 
 public class Administrador {
 
-    private int idAdministrador;
+	private int idAdministrador;
 
-    public int getIdAdministrador() {
-        return idAdministrador;
-    }
+	public int getIdAdministrador() {
+		return idAdministrador;
+	}
 
-    public void setIdAdministrador(int idAdministrador) {
-        this.idAdministrador = idAdministrador;
-    }
+	public void setIdAdministrador(int idAdministrador) {
+		this.idAdministrador = idAdministrador;
+	}
 }

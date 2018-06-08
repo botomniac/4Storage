@@ -30,8 +30,9 @@ public class Principal {
 
 	/**
 	 * Create the application.
-	 * @param b 
-	 * @param btnEntra 
+	 * 
+	 * @param b
+	 * @param btnEntra
 	 */
 	public Principal() {
 		initialize();
@@ -45,7 +46,7 @@ public class Principal {
 		frame.setBounds(100, 100, 814, 489);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JLabel lblPrincipal = new JLabel("principal");
 		lblPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 99));
 		lblPrincipal.setBounds(147, 111, 418, 268);
@@ -54,6 +55,6 @@ public class Principal {
 
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

@@ -5,7 +5,6 @@
  */
 package boundary;
 
-
 import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 
 import javax.swing.UIManager;
@@ -16,18 +15,19 @@ import javax.swing.UIManager;
  */
 public class Aparencia {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new GraphiteLookAndFeel());
-            new TelaInicial().setVisible(true);
+	/**
+	 * @param args
+	 *            the command line arguments
+	 */
+	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(new GraphiteLookAndFeel());
+			new TelaInicial().setVisible(true);
 
-        } catch (Exception e) {
+		} catch (Exception e) {
 
-        }
+		}
 
-    }
+	}
 
 }
