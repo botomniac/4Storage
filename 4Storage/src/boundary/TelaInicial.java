@@ -29,7 +29,7 @@ public class TelaInicial extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
+     //   bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         lblLogo = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
@@ -70,13 +70,13 @@ public class TelaInicial extends javax.swing.JFrame {
 
         lblFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bg.jpg"))); // NOI18N
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, lblFundo, org.jdesktop.beansbinding.ELProperty.create("${background}"), lblFundo, org.jdesktop.beansbinding.BeanProperty.create("background"));
-        bindingGroup.addBinding(binding);
+       // org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, lblFundo, org.jdesktop.beansbinding.ELProperty.create("${background}"), lblFundo, org.jdesktop.beansbinding.BeanProperty.create("background"));
+        //bindingGroup.addBinding(binding);
 
         getContentPane().add(lblFundo);
         lblFundo.setBounds(0, 0, 1030, 770);
 
-        bindingGroup.bind();
+//        bindingGroup.bind();
 
         pack();
         setLocationRelativeTo(null);
@@ -138,6 +138,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblFundo;
     private javax.swing.JLabel lblLogo;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
+  //  private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
