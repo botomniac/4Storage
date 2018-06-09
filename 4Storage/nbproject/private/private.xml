@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Dodo/Documents/GitHub/4Storage/4Storage/src/boundary/TelaPrincipal.java</file>
+            <file>file:/C:/Users/Dodo/Documents/GitHub/4Storage/4Storage/src/boundary/TelaLogin.java</file>
+            <file>file:/C:/Users/Dodo/Documents/GitHub/4Storage/4Storage/src/dao/DocumentoDAO.java</file>
+            <file>file:/C:/Users/Dodo/Documents/GitHub/4Storage/4Storage/src/boundary/TelaInicial.java</file>
+            <file>file:/C:/Users/Dodo/Documents/GitHub/4Storage/4Storage/src/boundary/Aparencia.java</file>
+            <file>file:/C:/Users/Dodo/Documents/GitHub/4Storage/4Storage/src/entities/Documento.java</file>
+        </group>
     </open-files>
 </project-private>
