@@ -31,7 +31,7 @@ public class DocumentoDAO {
             stmt.setString(2, doc.getNomeDoc());
             stmt.setDouble(3, doc.getTamanho());
             stmt.setString(4, doc.getUploader());
-            stmt.setDate(5, (Date) doc.getDataUpload());
+            stmt.setDate(5, new java.sql.Date(doc.getDataUpload().getTime()));
 
             stmt.executeUpdate();
 

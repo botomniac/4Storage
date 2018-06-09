@@ -269,7 +269,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //        
 //    
 //        doc.setNomeDoc(file.getName()); 
-//        doc.setTamanho(Double.parseDouble(fileSize));
+//        doc.setTamanho(tamanhoArquivo);
 //        doc.setUploader(username);
 //        doc.setDataUpload(java.sql.Date(d));
 //
