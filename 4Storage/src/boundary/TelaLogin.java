@@ -139,7 +139,7 @@ public class TelaLogin extends javax.swing.JFrame {
 		UsuarioDAO dao = new UsuarioDAO();
 
 		if (dao.checkLogin(txtNomeUsuario.getText(), txtSenhaUsuario.getText())) {
-			new TelaPrincipal().setVisible(true);
+	//		new TelaPrincipal().setVisible(true);
 			this.dispose();
 			if (enviaNome == null) {
 				enviaNome = new TelaPrincipal();

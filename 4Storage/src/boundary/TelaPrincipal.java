@@ -11,6 +11,7 @@ import java.io.File;
 import static java.lang.String.format;
 import java.text.DateFormat;
 import java.util.Date;
+
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -263,7 +264,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
             
             //ABAIXO PARA ADICIONAR DADOS DO ARQUIVO NO BANCO
             
-            
+//            
+//        DocumentoDAO ddao = new DocumentoDAO(); //CRIA OBJETO DA CLASSE PRODUTODAO
+//        
+//    
+//        doc.setNomeDoc(file.getName()); 
+//        doc.setTamanho(Double.parseDouble(fileSize));
+//        doc.setUploader(username);
+//        doc.setDataUpload(java.sql.Date(d));
+//
+//        ddao.uploadDocumento(doc); // inserir os comandos passados com o metodo create() do DAO
+
 
 
     }//GEN-LAST:event_btnUploadActionPerformed

@@ -14,10 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Mr.W
- */
+
 public class UsuarioDAO {
 
 	public static void criaUsuario(Usuario user) {
@@ -35,7 +32,7 @@ public class UsuarioDAO {
 
 			stmt.executeUpdate(); // EXECUTA O UPDATE DO STMT SETADO ACIMA
 
-			JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso!");
+			JOptionPane.showMessageDialog(null, "UsuÃ¡rio salvo com sucesso!");
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro ao salvar: " + e, " ERRO", JOptionPane.ERROR_MESSAGE);
 		} finally {
@@ -52,7 +49,7 @@ public class UsuarioDAO {
 					+ user.getNomeUsuario() + "");
 			diretorio.mkdir();
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, "Erro ao criar o diretório");
+			JOptionPane.showMessageDialog(null, "Erro ao criar o diretï¿½rio");
 			System.out.println(ex);
 		}
 	}
@@ -66,7 +63,7 @@ public class UsuarioDAO {
 		boolean check = false;
 
 		try {
-			// comando para selecionar login e senha do usuário
+			// comando para selecionar login e senha do usuï¿½rio
 			stmt = con.prepareStatement("SELECT * FROM usuario WHERE usuario_nome = ? and usuario_senha = ?");
 
 			stmt.setString(1, login);

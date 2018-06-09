@@ -9,10 +9,7 @@ import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 
 import javax.swing.UIManager;
 
-/**
- *
- * @author Mr.W
- */
+
 public class Aparencia {
 
 	/**

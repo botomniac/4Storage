@@ -13,10 +13,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Mr.W
- */
+
 public class ConnectionFactory {
 
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
@@ -31,7 +28,7 @@ public class ConnectionFactory {
 			return DriverManager.getConnection(URL, USER, PASS);
 
 		} catch (ClassNotFoundException | SQLException ex) {
-			throw new RuntimeException("Erro na conexão: ", ex);
+			throw new RuntimeException("Erro na conexï¿½o: ", ex);
 		}
 	}
 

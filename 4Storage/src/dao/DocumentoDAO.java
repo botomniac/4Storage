@@ -27,8 +27,7 @@ public class DocumentoDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO documento (documento_nome, documento_tamanho,"
-                    + " documento_uploader_nome, documento_data)VALUES(?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO documento (documento_nome,documento_tamanho,documento_uploader_nome,documento_data)VALUES(?,?,?,?)");
             stmt.setString(2, doc.getNomeDoc());
             stmt.setDouble(3, doc.getTamanho());
             stmt.setString(4, doc.getUploader());
@@ -37,7 +36,7 @@ public class DocumentoDAO {
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Documento salvo!");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar documento :c --> " + e, "ERRO", JOptionPane.ERROR_MESSAGE);
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
@@ -100,7 +99,7 @@ public class DocumentoDAO {
 
                 Documento documento = new Documento();
                 //*1  
-                documento.setIdDoc(rs.getInt("documento_id"));
+            //    documento.setIdDoc(rs.getInt("documento_id"));
                 documento.setNomeDoc(rs.getString("documento_nome"));
                 documento.setTamanho(rs.getInt("documento_tamanho"));
                 documento.setUploader(rs.getString("documento_uploader_nome"));
