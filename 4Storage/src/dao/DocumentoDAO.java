@@ -28,10 +28,10 @@ public class DocumentoDAO {
 
         try {
             stmt = con.prepareStatement("INSERT INTO documento (documento_nome,documento_tamanho,documento_uploader_nome,documento_data)VALUES(?,?,?,?)");
-            stmt.setString(2, doc.getNomeDoc());
-            stmt.setDouble(3, doc.getTamanho());
-            stmt.setString(4, doc.getUploader());
-            stmt.setDate(5, new java.sql.Date(doc.getDataUpload().getTime()));
+            stmt.setString(1, doc.getNomeDoc());
+            stmt.setDouble(2, doc.getTamanho());
+            stmt.setString(3, doc.getUploader());
+            stmt.setDate(4, new java.sql.Date(doc.getDataUpload().getTime()));
 
             stmt.executeUpdate();
 
@@ -50,11 +50,11 @@ public class DocumentoDAO {
         try {
 
             stmt = con.prepareStatement("UPDATE documento SET documento_nome = ?, documento_tamanho = ? , documento_uploader_nome = ? , documento_data = ? WHERE documento_id = ?");
-            stmt.setString(2, doc.getNomeDoc());
-            stmt.setDouble(3, doc.getTamanho());
-            stmt.setString(4, doc.getUploader());
-            stmt.setDate(5, (Date) doc.getDataUpload());
-            stmt.setInt(1, doc.getIdDoc());
+            stmt.setString(1, doc.getNomeDoc());
+            stmt.setDouble(2, doc.getTamanho());
+            stmt.setString(3, doc.getUploader());
+            stmt.setDate(4, new java.sql.Date(doc.getDataUpload().getTime()));
+     //       stmt.setInt(1, doc.getIdDoc());
 
             stmt.executeUpdate(); //exexuta a atualizacao da tabela
 

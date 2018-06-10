@@ -264,16 +264,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             
             //ABAIXO PARA ADICIONAR DADOS DO ARQUIVO NO BANCO
             
-//            
-//        DocumentoDAO ddao = new DocumentoDAO(); //CRIA OBJETO DA CLASSE PRODUTODAO
-//        
-//    
-//        doc.setNomeDoc(file.getName()); 
-//        doc.setTamanho(tamanhoArquivo);
-//        doc.setUploader(username);
-//        doc.setDataUpload(java.sql.Date(d));
-//
-//        ddao.uploadDocumento(doc); // inserir os comandos passados com o metodo create() do DAO
+            
+        DocumentoDAO ddao = new DocumentoDAO(); //CRIA OBJETO DA CLASSE PRODUTODAO
+        
+    
+        doc.setNomeDoc(file.getName()); 
+        doc.setTamanho(tamanhoArquivo);
+        doc.setUploader(username);
+        doc.setDataUpload(d);
+
+        ddao.uploadDocumento(doc); // inserir os comandos passados com o metodo create() do DAO
 
 
 
