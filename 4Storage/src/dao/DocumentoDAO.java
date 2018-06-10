@@ -34,8 +34,6 @@ public class DocumentoDAO {
             stmt.setDate(4, new java.sql.Date(doc.getDataUpload().getTime()));
 
             stmt.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, "Documento salvo!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar documento :c --> " + e, "ERRO", JOptionPane.ERROR_MESSAGE);
         } finally {
@@ -58,7 +56,6 @@ public class DocumentoDAO {
 
             stmt.executeUpdate(); //exexuta a atualizacao da tabela
 
-            JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao Atualizar: " + ex, "EROO", JOptionPane.ERROR_MESSAGE);
         } finally { // etapa necessaria para fechar a conexao CloseConnectionb
@@ -76,7 +73,6 @@ public class DocumentoDAO {
 
             stmt.executeUpdate(); //executa a atualizacao da tabela
 
-            JOptionPane.showMessageDialog(null, "Documento Excluído com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao excluir: " + ex, "ERRO", JOptionPane.ERROR_MESSAGE);
         } finally { // etapa necessaria para fechar a conexao CloseConnectionb
