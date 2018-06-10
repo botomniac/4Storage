@@ -60,6 +60,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        opcCopiar = new javax.swing.JMenuItem();
+        opcExcluir = new javax.swing.JMenuItem();
+        opcRenomear = new javax.swing.JMenuItem();
         painelTopo = new javax.swing.JPanel();
         painelLateral = new javax.swing.JPanel();
         btnMeuArmazenamento = new javax.swing.JButton();
@@ -75,6 +79,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tabelaArquivos = new javax.swing.JTable();
         btnUpload = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+
+        opcCopiar.setText("Copiar");
+        opcCopiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                opcCopiarMouseReleased(evt);
+            }
+        });
+        jPopupMenu1.add(opcCopiar);
+
+        opcExcluir.setText("Excluir");
+        opcExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                opcExcluirMouseReleased(evt);
+            }
+        });
+        jPopupMenu1.add(opcExcluir);
+
+        opcRenomear.setText("Renomear");
+        opcRenomear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                opcRenomearMouseReleased(evt);
+            }
+        });
+        jPopupMenu1.add(opcRenomear);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("4 Storage - Meu Armazenamento");
@@ -161,8 +189,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
             new String [] {
                 "NOME DO ARQUIVO", "TAMANHO", "UPLOADER", "DATA"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaArquivos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tabelaArquivosMouseReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabelaArquivos);
+        if (tabelaArquivos.getColumnModel().getColumnCount() > 0) {
+            tabelaArquivos.getColumnModel().getColumn(0).setMinWidth(300);
+            tabelaArquivos.getColumnModel().getColumn(0).setPreferredWidth(300);
+            tabelaArquivos.getColumnModel().getColumn(1).setMinWidth(100);
+            tabelaArquivos.getColumnModel().getColumn(1).setPreferredWidth(100);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -232,16 +279,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
+//UPLOAD DE ARQUIVOS
 
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Buscar Arquivo");
         fileChooser.setMultiSelectionEnabled(true);
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-//
-//        FileNameExtensionFilter filter = new FileNameExtensionFilter("Todos os arquivos", "jpg", "txt", "png", "pdf", "doc", "mp3"); //AQUI SE ESPECIFICA OS TIPOS DE ARQUIVOS (ATRAVES DA EXTENSAO) SUPORTADOS PARA UPLOAD
-//
-//        fileChooser.setFileFilter(filter);
-        fileChooser.addChoosableFileFilter(null);
 
         int retorno = fileChooser.showOpenDialog(this);
 
@@ -251,7 +294,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if (retorno == JFileChooser.APPROVE_OPTION) { //CONDIÇAO SE O BOTAO DE "ABRIR" DO FILECHOOSER COM O DOCUMENTO SLECIONADO FOR APERTADO 
             File file = fileChooser.getSelectedFile(); //PEGA O ARQUIVO SELECIONADO...
             DefaultTableModel dtm = (DefaultTableModel) tabelaArquivos.getModel(); //POPULA TABELA COM O ARQUIVO SELECIONADO
-            
+
             double tamanhoArquivo = file.length() / 1048726D;// pega tamanho do arquivo em bytes
             String fileSize = String.format("%.2f", tamanhoArquivo);
             java.util.Date d = new Date();
@@ -282,6 +325,50 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_btnUploadActionPerformed
     }
+
+    //MENU POPUP DE OPCOES PARA MANIPULAR O ARQUIVO (COPIAR, EXCLUIR, RENOMEAR)
+    private void tabelaArquivosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaArquivosMouseReleased
+        if (evt.isPopupTrigger()) {
+            jPopupMenu1.show(this, evt.getXOnScreen(), evt.getYOnScreen());
+        }
+    }//GEN-LAST:event_tabelaArquivosMouseReleased
+    //OPC PARA COPIAR ARQUIVO
+    private void opcCopiarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcCopiarMouseReleased
+        if (tabelaArquivos.getSelectedRow() != -1) { //essa linha confere se um item da tabela foi selecionado (se não retorna -1)
+            Documento doc = new Documento();
+            DocumentoDAO ddao = new DocumentoDAO();
+
+            //doc.setIdDoc((int) tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0));
+
+            ddao.copiaDocumento(doc); // inserir os comandos passados com o metodo copiarDocumentos() do DAO
+
+            readJTable();
+
+            //PARA ADICIONAR O ARQUIVO NA SUA RESPECTIVA PASTA
+           
+            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 1)+""); //*******************ARRUMAR ESSA LINHA
+            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + origem.getName() + "(1)");
+
+            try { //tenta copiar arquivo passando local de origem e destino
+                copy(origem, destino);
+            } catch (IOException ex) { //caso nao consiga copiar arquivo, emite mensagem
+                System.out.println("Erro> " + ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um arquivo");
+        }
+
+    }//GEN-LAST:event_opcCopiarMouseReleased
+
+    //OPC PARA EXCLUIR ARQUIVO
+    private void opcExcluirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcExcluirMouseReleased
+
+    }//GEN-LAST:event_opcExcluirMouseReleased
+
+    //OPC PARA RENOMEAR ARQUIVO
+    private void opcRenomearMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcRenomearMouseReleased
+
+    }//GEN-LAST:event_opcRenomearMouseReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -323,7 +410,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         FileOutputStream destination = new FileOutputStream(destino); // atribui a destination o destino do arquivo como output
         FileChannel sourceFileChannel = source.getChannel();
         FileChannel destinationFileChannel = destination.getChannel();
-        long size = sourceFileChannel.size(); 
+        long size = sourceFileChannel.size();
         sourceFileChannel.transferTo(0, size, destinationFileChannel);
 
     }
@@ -336,11 +423,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JMenuItem opcCopiar;
+    private javax.swing.JMenuItem opcExcluir;
+    private javax.swing.JMenuItem opcRenomear;
     private javax.swing.JPanel painelLateral;
     private javax.swing.JPanel painelTopo;
     private javax.swing.JTable tabelaArquivos;

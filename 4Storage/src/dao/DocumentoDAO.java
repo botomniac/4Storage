@@ -52,7 +52,6 @@ public class DocumentoDAO {
             stmt.setDouble(2, doc.getTamanho());
             stmt.setString(3, doc.getUploader());
             stmt.setDate(4, new java.sql.Date(doc.getDataUpload().getTime()));
-     //       stmt.setInt(1, doc.getIdDoc());
 
             stmt.executeUpdate(); //exexuta a atualizacao da tabela
 
@@ -79,7 +78,23 @@ public class DocumentoDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
+    public void copiaDocumento(Documento doc) {
+         Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("INSERT INTO documento (documento_nome,documento_tamanho,documento_uploader_nome,documento_data)VALUES(?,?,?,?)");
+            stmt.setString(1, doc.getNomeDoc());
+            stmt.setDouble(2, doc.getTamanho());
+            stmt.setString(3, doc.getUploader());
+            stmt.setDate(4, new java.sql.Date(doc.getDataUpload().getTime()));
 
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar documento :c --> " + e, "ERRO", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
     public List<Documento> read() {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
