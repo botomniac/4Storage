@@ -48,7 +48,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 		jLabel4 = new javax.swing.JLabel();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Cadastro de novo Usuário");
+		setTitle("Cadastro de novo Usuï¿½rio");
 		setMinimumSize(null);
 		setUndecorated(true);
 		setResizable(false);
@@ -58,7 +58,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 			}
 		});
 
-		jLabel1.setText("Nome de usuário");
+		jLabel1.setText("Nome de usuï¿½rio");
 
 		jLabel2.setText("Email");
 
@@ -87,7 +87,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
 		jLabel4.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
 		jLabel4.setForeground(new java.awt.Color(255, 51, 0));
-		jLabel4.setText("*Sem espaçamentos");
+		jLabel4.setText("*Sem espaï¿½amentos");
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -154,7 +154,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 		ImageIcon ico = new ImageIcon("src/Images/logo2.png");
 		ico.setImage(ico.getImage().getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), 1));
 		lblLogo.setIcon(ico);
-		new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER").mkdir();
+		
 	}// GEN-LAST:event_formWindowOpened
 
 	private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSalvarActionPerformed

@@ -5,6 +5,7 @@
  */
 package boundary;
 
+import java.io.File;
 import javax.swing.ImageIcon;
 
 /**
@@ -90,6 +91,8 @@ public class TelaInicial extends javax.swing.JFrame {
 		ImageIcon ico = new ImageIcon("src/Images/logo.png");
 		ico.setImage(ico.getImage().getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), 1));
 		lblLogo.setIcon(ico);
+                new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER").mkdir();
+                new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA").mkdir();
 	}// GEN-LAST:event_formWindowOpened
 
 	private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEntrarActionPerformed
