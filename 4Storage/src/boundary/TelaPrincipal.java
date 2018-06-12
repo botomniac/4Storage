@@ -116,7 +116,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelTopo.setLayout(painelTopoLayout);
         painelTopoLayout.setHorizontalGroup(
             painelTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 133, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         painelTopoLayout.setVerticalGroup(
             painelTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +300,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(btnUpload3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(painelTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -316,7 +316,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(painelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
+                    .addComponent(painelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 
@@ -379,54 +379,54 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaArquivosMouseReleased
     //OPC PARA COPIAR ARQUIVO
     private void opcCopiarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcCopiarMouseReleased
-//        if (tabelaArquivos.getSelectedRow() != -1) { //essa linha confere se um item da tabela foi selecionado (se não retorna -1)
-//            Documento doc = new Documento();
-//            DocumentoDAO ddao = new DocumentoDAO();
-//
-//            doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
-//            doc.setTamanho((double) tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 1));
-//            doc.setUploader(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 2).toString());
-//            doc.setDataUpload((Date) tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 3));
-//            
-//            ddao.copiaDocumento(doc); // inserir os comandos passados com o metodo copiarDocumentos() do DAO
-//
-//            readJTable();
-//
-//            //PARA ADICIONAR O ARQUIVO NA SUA RESPECTIVA PASTA
-//            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
-//            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + origem.getName() + "(1)");
-//
-//            try { //tenta copiar arquivo passando local de origem e destino
-//                copy(origem, destino);
-//            } catch (IOException ex) { //caso nao consiga copiar arquivo, emite mensagem
-//                System.out.println("Erro> " + ex);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Selecione um arquivo");
-//        }
+        if (tabelaArquivos.getSelectedRow() != -1) { //essa linha confere se um item da tabela foi selecionado (se não retorna -1)
+            Documento doc = new Documento();
+            DocumentoDAO ddao = new DocumentoDAO();
+
+            doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
+            doc.setTamanho((double) tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 1));
+            doc.setUploader(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 2).toString());
+            doc.setDataUpload((Date) tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 3));
+            
+            ddao.copiaDocumento(doc); // inserir os comandos passados com o metodo copiarDocumentos() do DAO
+
+            readJTable();
+
+            //PARA ADICIONAR O ARQUIVO NA SUA RESPECTIVA PASTA
+            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
+            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + origem.getName() + "(1)");
+
+            try { //tenta copiar arquivo passando local de origem e destino
+                copy(origem, destino);
+            } catch (IOException ex) { //caso nao consiga copiar arquivo, emite mensagem
+                System.out.println("Erro> " + ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um arquivo");
+        }
 
     }//GEN-LAST:event_opcCopiarMouseReleased
 
     //OPC PARA EXCLUIR ARQUIVO
     private void opcExcluirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcExcluirMouseReleased
-//        if (tabelaArquivos.getSelectedRow() != -1) {
-//            Documento doc = new Documento();
-//            DocumentoDAO ddao = new DocumentoDAO();
-//            
-//            doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
-//            
-//            ddao.deletaDocumento(doc);
-//            
-//            readJTable();
-//            
-//            //PARA MOVER O ARQUIVO PARA LIXEIRA
-//            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
-//            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA\\");
-//            origem.renameTo(new File(destino,origem.getName()));
-//            
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
-//        }
+        if (tabelaArquivos.getSelectedRow() != -1) {
+            Documento doc = new Documento();
+            DocumentoDAO ddao = new DocumentoDAO();
+            
+            doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
+            
+            ddao.deletaDocumento(doc);
+            
+            readJTable();
+            
+            //PARA MOVER O ARQUIVO PARA LIXEIRA
+            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
+            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA\\");
+            origem.renameTo(new File(destino,origem.getName()));
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+        }
     }//GEN-LAST:event_opcExcluirMouseReleased
 
     //OPC PARA RENOMEAR ARQUIVO
