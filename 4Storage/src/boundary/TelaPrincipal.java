@@ -5,22 +5,19 @@
  */
 package boundary;
 
+import static boundary.TelaLogin.nick;
 import controller.ArquivosTableModel;
 import dao.DocumentoDAO;
-import entities.Documento;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
-import java.text.DateFormat;
+
 import java.util.Date;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 import entities.Documento;
 
@@ -30,12 +27,8 @@ import entities.Documento;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    public String username;
-    ArquivosTableModel tableModel = new ArquivosTableModel();
 
-    public void recebeNome(String recebe) {
-        username = recebe;
-    }
+    ArquivosTableModel tableModel = new ArquivosTableModel();
 
     public TelaPrincipal() {
         initComponents();
@@ -304,7 +297,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(painelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE))
+                    .addComponent(painelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 
@@ -312,9 +305,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void carregaTabela() { //METODO QUE CARREGA A TABELA COM OS DOCUMENTOS DO USUARIO ASSIM Q ELE LOGA NO SISTEMA
-
-        DocumentoDAO ddao = new DocumentoDAO();
-        for (Documento doc : ddao.read()) {
+      
+        for (Documento doc : DocumentoDAO.read(nick)) {
             tableModel.adicionaLinha(doc);
         }
 
@@ -343,23 +335,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
             java.util.Date d = new Date();
 //            String data = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
 //
-//            Object[] dados = {file.getName(), fileSize + "MB", username, data};
-//            dtm.addRow(dados);
-
+//         
             //ABAIXO PARA ADICIONAR DADOS DO ARQUIVO NO BANCO
             DocumentoDAO ddao = new DocumentoDAO(); //CRIA OBJETO DA CLASSE PRODUTODAO
 //
             doc.setNomeDoc(file.getName());
             doc.setTamanho(file.length() / 1048726D);
-            doc.setUploader(username);
+            doc.setUploader(nick);
             doc.setDataUpload(d);
 //
             ddao.uploadDocumento(doc); // inserir os comandos passados com o metodo uploadDocumento() do DAO
 
             //PARA ADICIONAR O ARQUIVO NA SUA RESPECTIVA PASTA
-            new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\").mkdir();
+            new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\").mkdir();
             File origem = new File(file.getPath());
-            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + origem.getName() + "");
+            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + origem.getName() + "");
 
             try { //tenta copiar arquivo passando local de origem e destino
                 copy(origem, destino);
@@ -384,8 +374,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //
 //            readJTable();
             //PARA ADICIONAR O ARQUIVO NA SUA RESPECTIVA PASTA
-            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
-            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + origem.getName() + "(1)");
+            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
+            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + origem.getName() + "(1)");
 
             try { //tenta copiar arquivo passando local de origem e destino
                 copy(origem, destino);
@@ -411,7 +401,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //            readJTable();
 //            
             //PARA MOVER O ARQUIVO PARA LIXEIRA
-            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
+            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
             File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA\\");
             origem.renameTo(new File(destino, origem.getName()));
 
@@ -438,7 +428,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //            readJTable();
 //            
             //PARA MOVER O ARQUIVO PARA LIXEIRA
-            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
+            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
             File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA\\");
             origem.renameTo(new File(destino, origem.getName()));
 
