@@ -97,9 +97,6 @@ public class DocumentoDAO {
         }
     }
     public static List<Documento> read(String nick) {
-//        TelaPrincipal tp = new TelaPrincipal();
-//        String s = tp.username;
-//        System.out.println(s);
       
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -116,8 +113,7 @@ public class DocumentoDAO {
             while (rs.next()) { //enquanto existir valor ele vai passar pro proximo ate lançar tds
 
                 Documento documento = new Documento();
-                //*1  
-            //    documento.setIdDoc(rs.getInt("documento_id"));
+        
                 documento.setNomeDoc(rs.getString("documento_nome"));
                 documento.setTamanho(rs.getInt("documento_tamanho"));
                 documento.setUploader(rs.getString("documento_uploader_nome"));

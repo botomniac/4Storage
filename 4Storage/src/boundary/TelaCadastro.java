@@ -5,6 +5,7 @@
  */
 package boundary;
 
+import static controller.ControleUsuario.criaUsuario;
 import dao.UsuarioDAO;
 import entities.Usuario;
 import java.io.File;
@@ -158,24 +159,9 @@ public class TelaCadastro extends javax.swing.JFrame {
 	}// GEN-LAST:event_formWindowOpened
 
 	private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSalvarActionPerformed
-		Usuario user = new Usuario();
-		UsuarioDAO dao = new UsuarioDAO();
-		if ((!txtNomeUsuario.getText().isEmpty()) && (!txtEmailUsuario.getText().isEmpty())
-				&& (!txtSenhaUsuario.getText().isEmpty())) {
-			user.setNomeUsuario(txtNomeUsuario.getText());
-			user.setSenha(txtSenhaUsuario.getText());
-			user.setEmail(txtEmailUsuario.getText());
-			user.setEspacoMax(15000);
-			user.setEspacoLivre(15000);
-
-			dao.criaUsuario(user);
-			new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + user.getNomeUsuario()
-					+ "").mkdir();
-			this.dispose();
-		} else {
-			JOptionPane.showMessageDialog(null, "Um ou mais campos não foram preenchidos", "ERRO",
-					JOptionPane.ERROR_MESSAGE);
-		}
+            criaUsuario(txtNomeUsuario,txtSenhaUsuario,txtEmailUsuario);
+            this.dispose();
+           
 	}// GEN-LAST:event_btnSalvarActionPerformed
 
 	private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCancelarActionPerformed

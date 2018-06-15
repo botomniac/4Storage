@@ -5,8 +5,10 @@
  */
 package boundary;
 
-import static boundary.TelaLogin.nick;
 import controller.ArquivosTableModel;
+import controller.ControleArquivos;
+import static controller.ControleUsuario.nick;
+//import static controller.ControleArquivos.copiaArquivo;
 import dao.DocumentoDAO;
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,14 +29,13 @@ import entities.Documento;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-
     ArquivosTableModel tableModel = new ArquivosTableModel();
 
     public TelaPrincipal() {
         initComponents();
         tabelaArquivos.setModel(tableModel);
         carregaTabela();
-   
+
     }
 
     @SuppressWarnings("unchecked")
@@ -46,7 +47,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         opcExcluir = new javax.swing.JMenuItem();
         opcRenomear = new javax.swing.JMenuItem();
         painelTopo = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
         painelLateral = new javax.swing.JPanel();
         btnMeuArmazenamento = new javax.swing.JButton();
         btnCompartilhados = new javax.swing.JButton();
@@ -61,8 +62,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tabelaArquivos = new javax.swing.JTable();
         btnUpload = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        btnUpload2 = new javax.swing.JButton();
-        btnUpload3 = new javax.swing.JButton();
+        btnRenomear = new javax.swing.JButton();
+        btnCriaCopia = new javax.swing.JButton();
 
         opcCopiar.setText("Copiar");
         opcCopiar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -94,10 +95,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         painelTopo.setPreferredSize(new java.awt.Dimension(890, 120));
 
-        jButton2.setText("SAIR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSair.setText("SAIR");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSairActionPerformed(evt);
             }
         });
 
@@ -107,14 +108,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             painelTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelTopoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2))
+                .addComponent(btnSair))
         );
         painelTopoLayout.setVerticalGroup(
             painelTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelTopoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         painelLateral.setPreferredSize(new java.awt.Dimension(220, 100));
@@ -234,31 +235,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnUpload2.setBackground(new java.awt.Color(51, 51, 51));
-        btnUpload2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnUpload2.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpload2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/renomear.png"))); // NOI18N
-        btnUpload2.setText("Renomear");
-        btnUpload2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        btnUpload2.setMaximumSize(new java.awt.Dimension(71, 25));
-        btnUpload2.setMinimumSize(new java.awt.Dimension(71, 25));
-        btnUpload2.addActionListener(new java.awt.event.ActionListener() {
+        btnRenomear.setBackground(new java.awt.Color(51, 51, 51));
+        btnRenomear.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRenomear.setForeground(new java.awt.Color(255, 255, 255));
+        btnRenomear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/renomear.png"))); // NOI18N
+        btnRenomear.setText("Renomear");
+        btnRenomear.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        btnRenomear.setMaximumSize(new java.awt.Dimension(71, 25));
+        btnRenomear.setMinimumSize(new java.awt.Dimension(71, 25));
+        btnRenomear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpload2ActionPerformed(evt);
+                btnRenomearActionPerformed(evt);
             }
         });
 
-        btnUpload3.setBackground(new java.awt.Color(51, 51, 51));
-        btnUpload3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnUpload3.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpload3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/copiar.png"))); // NOI18N
-        btnUpload3.setText("Criar Cópia");
-        btnUpload3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        btnUpload3.setMaximumSize(new java.awt.Dimension(71, 25));
-        btnUpload3.setMinimumSize(new java.awt.Dimension(71, 25));
-        btnUpload3.addActionListener(new java.awt.event.ActionListener() {
+        btnCriaCopia.setBackground(new java.awt.Color(51, 51, 51));
+        btnCriaCopia.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnCriaCopia.setForeground(new java.awt.Color(255, 255, 255));
+        btnCriaCopia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/copiar.png"))); // NOI18N
+        btnCriaCopia.setText("Criar Cópia");
+        btnCriaCopia.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        btnCriaCopia.setMaximumSize(new java.awt.Dimension(71, 25));
+        btnCriaCopia.setMinimumSize(new java.awt.Dimension(71, 25));
+        btnCriaCopia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpload3ActionPerformed(evt);
+                btnCriaCopiaActionPerformed(evt);
             }
         });
 
@@ -276,11 +277,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnUpload2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRenomear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnUpload3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCriaCopia, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(painelTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
+                        .addComponent(painelTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -292,12 +293,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnUpload2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnUpload3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnRenomear, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCriaCopia, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(painelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
+                    .addComponent(painelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 
@@ -305,7 +306,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void carregaTabela() { //METODO QUE CARREGA A TABELA COM OS DOCUMENTOS DO USUARIO ASSIM Q ELE LOGA NO SISTEMA
-      
+
         for (Documento doc : DocumentoDAO.read(nick)) {
             tableModel.adicionaLinha(doc);
         }
@@ -329,13 +330,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             File file = fileChooser.getSelectedFile(); //PEGA O ARQUIVO SELECIONADO...
 
             tableModel.adicionaLinha(doc); //Adiciona o arquivo na tabela
-//
 //            double tamanhoArquivo = file.length() / 1048726D;// pega tamanho do arquivo em bytes
 //            String fileSize = String.format("%.2f", tamanhoArquivo);
             java.util.Date d = new Date();
 //            String data = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
-//
-//         
+
             //ABAIXO PARA ADICIONAR DADOS DO ARQUIVO NO BANCO
             DocumentoDAO ddao = new DocumentoDAO(); //CRIA OBJETO DA CLASSE PRODUTODAO
 //
@@ -345,110 +344,55 @@ public class TelaPrincipal extends javax.swing.JFrame {
             doc.setDataUpload(d);
 //
             ddao.uploadDocumento(doc); // inserir os comandos passados com o metodo uploadDocumento() do DAO
+            ControleArquivos.criaArquivo(file);
 
-            //PARA ADICIONAR O ARQUIVO NA SUA RESPECTIVA PASTA
-            new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\").mkdir();
-            File origem = new File(file.getPath());
-            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + origem.getName() + "");
-
-            try { //tenta copiar arquivo passando local de origem e destino
-                copy(origem, destino);
-            } catch (IOException ex) { //caso nao consiga copiar arquivo, emite mensagem
-                System.out.println("Erro> " + ex);
-            }
     }//GEN-LAST:event_btnUploadActionPerformed
     }
 
     //OPC PARA COPIAR ARQUIVO
     private void opcCopiarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcCopiarMouseReleased
-        if (tabelaArquivos.getSelectedRow() != -1) { //essa linha confere se um item da tabela foi selecionado (se não retorna -1)
-            Documento doc = new Documento();
-            DocumentoDAO ddao = new DocumentoDAO();
-
-//            doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
-//            doc.setTamanho((double) tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 1));
-//            doc.setUploader(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 2).toString());
-//            doc.setDataUpload((Date) tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 3));
-//            
-//            ddao.copiaDocumento(doc); // inserir os comandos passados com o metodo copiarDocumentos() do DAO
-//
-//            readJTable();
-            //PARA ADICIONAR O ARQUIVO NA SUA RESPECTIVA PASTA
-            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
-            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + origem.getName() + "(1)");
-
-            try { //tenta copiar arquivo passando local de origem e destino
-                copy(origem, destino);
-            } catch (IOException ex) { //caso nao consiga copiar arquivo, emite mensagem
-                System.out.println("Erro> " + ex);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um arquivo");
-        }
-
     }//GEN-LAST:event_opcCopiarMouseReleased
 
     //OPC PARA EXCLUIR ARQUIVO
     private void opcExcluirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcExcluirMouseReleased
-        if (tabelaArquivos.getSelectedRow() != -1) {
-            Documento doc = new Documento();
-            DocumentoDAO ddao = new DocumentoDAO();
-
-//            doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
-//            
-//            ddao.deletaDocumento(doc);
-//            
-//            readJTable();
-//            
-            //PARA MOVER O ARQUIVO PARA LIXEIRA
-            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
-            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA\\");
-            origem.renameTo(new File(destino, origem.getName()));
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
-        }
     }//GEN-LAST:event_opcExcluirMouseReleased
 
     //OPC PARA RENOMEAR ARQUIVO
     private void opcRenomearMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcRenomearMouseReleased
-
     }//GEN-LAST:event_opcRenomearMouseReleased
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if (tabelaArquivos.getSelectedRow() != -1) {
-            Documento doc = new Documento();
-            DocumentoDAO ddao = new DocumentoDAO();
-            tableModel.removeLinha(tabelaArquivos.getSelectedRow());
-
-//            doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
-//            
-//            ddao.deletaDocumento(doc);
-//            
-//            readJTable();
-//            
-            //PARA MOVER O ARQUIVO PARA LIXEIRA
-            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
-            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA\\");
-            origem.renameTo(new File(destino, origem.getName()));
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
-        }
+//        if (tabelaArquivos.getSelectedRow() != -1) {
+//            Documento doc = new Documento();
+//            DocumentoDAO ddao = new DocumentoDAO();
+//            tableModel.removeLinha(tabelaArquivos.getSelectedRow());
+//
+////            doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
+////            
+////            ddao.deletaDocumento(doc);
+////            
+////            readJTable();
+////            
+//            //PARA MOVER O ARQUIVO PARA LIXEIRA
+//            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
+//            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA\\");
+//            origem.renameTo(new File(destino, origem.getName()));
+//
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+//        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void btnUpload2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpload2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpload2ActionPerformed
+    private void btnRenomearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenomearActionPerformed
+    }//GEN-LAST:event_btnRenomearActionPerformed
 
-    private void btnUpload3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpload3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpload3ActionPerformed
+    private void btnCriaCopiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriaCopiaActionPerformed
+    }//GEN-LAST:event_btnCriaCopiaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispose();
         new TelaLogin().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnSairActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -482,28 +426,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
     }
 
-    public static void copy(File origem, File destino) throws IOException {//ROTINA DE UPLOAD DE ARQUIVOS
-        if (destino.exists()) {
-            return;
-        }
-        FileInputStream source = new FileInputStream(origem);   //atribui ao source "busca" o caminho do arquivo como input
-        FileOutputStream destination = new FileOutputStream(destino); // atribui a destination o destino do arquivo como output
-        FileChannel sourceFileChannel = source.getChannel();
-        FileChannel destinationFileChannel = destination.getChannel();
-        long size = sourceFileChannel.size();
-        sourceFileChannel.transferTo(0, size, destinationFileChannel);
-
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCompartilhados;
+    private javax.swing.JButton btnCriaCopia;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnMeuArmazenamento;
+    private javax.swing.JButton btnRenomear;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnUpload;
-    private javax.swing.JButton btnUpload2;
-    private javax.swing.JButton btnUpload3;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;

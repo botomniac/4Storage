@@ -55,24 +55,4 @@ public class Documento {
 		return "Documento: " + getNomeDoc();
 	}
 
-	public void moveDoc() {
-
-	}
-
-	public void copiaDoc() {
-
-	}
-
-	public void excluiDoc() {
-
-	}
-
-	public void renomeiaDoc() {
-
-	}
-
-	public void visualizaDoc() {
-
-	}
-
 }
