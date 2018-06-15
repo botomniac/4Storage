@@ -23,7 +23,7 @@ public class UsuarioDAO {
 
 		try {
 			stmt = con.prepareStatement(
-					"INSERT INTO usuario (usuario_nome,usuario_email,usuario_senha,usuario_espaco_max,usuario_espaco_livre)VALUES(?,?,?,?,?)");
+					"INSERT INTO usuario (usuario_nome,usuario_email,usuario_senha,usuario_espaco_max,usuario_espaco_usado)VALUES(?,?,?,?,?)");
 			stmt.setString(1, user.getNomeUsuario().replace(" ", "")); // SETA NA COLUNA 1 O NOME DE USUARIO
 			stmt.setString(2, user.getEmail());// SETA NA COLUNA 2 O EMAIL DO USUARIO
 			stmt.setString(3, user.getSenha());// SETA NA COLUNA 3 A SENHA DO USUARIO
