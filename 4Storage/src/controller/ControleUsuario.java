@@ -30,7 +30,7 @@ public class ControleUsuario {
 			user.setSenha(txtSenhaUsuario.getText());
 			user.setEmail(txtEmailUsuario.getText());
 			user.setEspacoMax(15000);
-			user.setEspacoLivre(15000);
+			user.setEspacoUsado(15000);
 
 			dao.criaUsuario(user);
 			new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + user.getNomeUsuario()

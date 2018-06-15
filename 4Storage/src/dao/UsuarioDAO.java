@@ -28,7 +28,7 @@ public class UsuarioDAO {
 			stmt.setString(2, user.getEmail());// SETA NA COLUNA 2 O EMAIL DO USUARIO
 			stmt.setString(3, user.getSenha());// SETA NA COLUNA 3 A SENHA DO USUARIO
 			stmt.setDouble(4, user.getEspacoMax());// SETA NA COLUNA 4 O ESPAÇO MAXIMO DO DISCO
-			stmt.setDouble(5, user.getEspacoLivre());// SETA NA COLUNA 5 ESPAÇO LIVRE NO DISCO
+			stmt.setDouble(5, user.getEspacoUsado());// SETA NA COLUNA 5 ESPAÇO LIVRE NO DISCO
 
 			stmt.executeUpdate(); // EXECUTA O UPDATE DO STMT SETADO ACIMA
 

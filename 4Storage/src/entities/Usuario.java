@@ -7,8 +7,7 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private double espacoMax;
-	private double espacoLivre;
-	// private String idioma;
+	private double espacoUsado;
 
 	public int getIdUsuario() {
 		return idUsuario;
@@ -50,19 +49,12 @@ public class Usuario {
 		this.espacoMax = espacoMax;
 	}
 
-	public double getEspacoLivre() {
-		return espacoLivre;
+	public double getEspacoUsado() {
+		return espacoUsado;
 	}
 
-	public void setEspacoLivre(double espacoLivre) {
-		this.espacoLivre = espacoLivre;
+	public void setEspacoUsado(double espacoUsado) {
+		this.espacoUsado = espacoUsado;
 	}
-
-	// public String getIdioma() {
-	// return idioma;
-	// }
-	// public void setIdioma(String idioma) {
-	// this.idioma = idioma;
-	// }
 
 }
