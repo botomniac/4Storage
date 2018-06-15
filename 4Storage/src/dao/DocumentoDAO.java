@@ -5,8 +5,11 @@
  */
 package dao;
 
+import boundary.TelaLogin;
+import boundary.TelaPrincipal;
 import connection.ConnectionFactory;
 import entities.Documento;
+import entities.Usuario;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.Date;
@@ -96,6 +99,10 @@ public class DocumentoDAO {
         }
     }
     public List<Documento> read() {
+//        TelaPrincipal tp = new TelaPrincipal();
+//        String s = tp.username;
+//        System.out.println(s);
+      
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -103,7 +110,7 @@ public class DocumentoDAO {
         List<Documento> documentos = new ArrayList<>(); //cria lista pra colocar os dados *1
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM documento"); //comando para selecionar tabela documento
+            stmt = con.prepareStatement("SELECT * FROM documento WHERE documento_uploader_nome LIKE 'teste'"); //comando para selecionar tabela de documentos do usuario logado
             rs = stmt.executeQuery(); // result set recebe o statemnt com o comando que libera  consulta
 
             while (rs.next()) { //enquanto existir valor ele vai passar pro proximo ate lançar tds

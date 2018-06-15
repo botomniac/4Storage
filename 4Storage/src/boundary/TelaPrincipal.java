@@ -22,6 +22,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
+import entities.Documento;
+
 /**
  *
  * @author Mr.W
@@ -30,17 +32,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public String username;
     ArquivosTableModel tableModel = new ArquivosTableModel();
-    
+
     public void recebeNome(String recebe) {
         username = recebe;
     }
 
     public TelaPrincipal() {
         initComponents();
-       tabelaArquivos.setModel(tableModel);
-    }
-
+        tabelaArquivos.setModel(tableModel);
+        carregaTabela();
    
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -309,6 +311,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void carregaTabela() { //METODO QUE CARREGA A TABELA COM OS DOCUMENTOS DO USUARIO ASSIM Q ELE LOGA NO SISTEMA
+
+        DocumentoDAO ddao = new DocumentoDAO();
+        for (Documento doc : ddao.read()) {
+            tableModel.adicionaLinha(doc);
+        }
+
+    }
+
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
 //UPLOAD DE ARQUIVOS
 
@@ -324,7 +335,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //ABAIXO PARA ADICIONAR DADOS DO ARQUIVO NA TABELA
         if (retorno == JFileChooser.APPROVE_OPTION) { //CONDIÇAO SE O BOTAO DE "ABRIR" DO FILECHOOSER COM O DOCUMENTO SLECIONADO FOR APERTADO 
             File file = fileChooser.getSelectedFile(); //PEGA O ARQUIVO SELECIONADO...
-           
+
             tableModel.adicionaLinha(doc); //Adiciona o arquivo na tabela
 //
 //            double tamanhoArquivo = file.length() / 1048726D;// pega tamanho do arquivo em bytes
@@ -339,7 +350,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             DocumentoDAO ddao = new DocumentoDAO(); //CRIA OBJETO DA CLASSE PRODUTODAO
 //
             doc.setNomeDoc(file.getName());
-            doc.setTamanho(file.length()/1048726D);
+            doc.setTamanho(file.length() / 1048726D);
             doc.setUploader(username);
             doc.setDataUpload(d);
 //
@@ -358,7 +369,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUploadActionPerformed
     }
 
-   //OPC PARA COPIAR ARQUIVO
+    //OPC PARA COPIAR ARQUIVO
     private void opcCopiarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcCopiarMouseReleased
         if (tabelaArquivos.getSelectedRow() != -1) { //essa linha confere se um item da tabela foi selecionado (se não retorna -1)
             Documento doc = new Documento();
@@ -372,7 +383,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //            ddao.copiaDocumento(doc); // inserir os comandos passados com o metodo copiarDocumentos() do DAO
 //
 //            readJTable();
-
             //PARA ADICIONAR O ARQUIVO NA SUA RESPECTIVA PASTA
             File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
             File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + origem.getName() + "(1)");
@@ -393,7 +403,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if (tabelaArquivos.getSelectedRow() != -1) {
             Documento doc = new Documento();
             DocumentoDAO ddao = new DocumentoDAO();
-            
+
 //            doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
 //            
 //            ddao.deletaDocumento(doc);
@@ -403,9 +413,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             //PARA MOVER O ARQUIVO PARA LIXEIRA
             File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
             File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA\\");
-            origem.renameTo(new File(destino,origem.getName()));
-            
-        }else{
+            origem.renameTo(new File(destino, origem.getName()));
+
+        } else {
             JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
         }
     }//GEN-LAST:event_opcExcluirMouseReleased
@@ -420,7 +430,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             Documento doc = new Documento();
             DocumentoDAO ddao = new DocumentoDAO();
             tableModel.removeLinha(tabelaArquivos.getSelectedRow());
-            
+
 //            doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
 //            
 //            ddao.deletaDocumento(doc);
@@ -430,9 +440,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             //PARA MOVER O ARQUIVO PARA LIXEIRA
             File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + username + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
             File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA\\");
-            origem.renameTo(new File(destino,origem.getName()));
-            
-        }else{
+            origem.renameTo(new File(destino, origem.getName()));
+
+        } else {
             JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -446,8 +456,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpload3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       this.dispose();
-       new TelaLogin().setVisible(true);
+        this.dispose();
+        new TelaLogin().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {
