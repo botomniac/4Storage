@@ -22,6 +22,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import entities.Documento;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -324,7 +331,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         int retorno = fileChooser.showOpenDialog(this);
 
         Documento doc = new Documento();
-        DocumentoDAO dao = new DocumentoDAO();
         //ABAIXO PARA ADICIONAR DADOS DO ARQUIVO NA TABELA
         if (retorno == JFileChooser.APPROVE_OPTION) { //CONDIÇAO SE O BOTAO DE "ABRIR" DO FILECHOOSER COM O DOCUMENTO SLECIONADO FOR APERTADO 
             File file = fileChooser.getSelectedFile(); //PEGA O ARQUIVO SELECIONADO...
@@ -337,12 +343,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             //ABAIXO PARA ADICIONAR DADOS DO ARQUIVO NO BANCO
             DocumentoDAO ddao = new DocumentoDAO(); //CRIA OBJETO DA CLASSE PRODUTODAO
-//
+
             doc.setNomeDoc(file.getName());
             doc.setTamanho(file.length() / 1048726D);
             doc.setUploader(nick);
             doc.setDataUpload(d);
-//
+
             ddao.uploadDocumento(doc); // inserir os comandos passados com o metodo uploadDocumento() do DAO
             ControleArquivos.criaArquivo(file);
 
@@ -362,25 +368,50 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_opcRenomearMouseReleased
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-//        if (tabelaArquivos.getSelectedRow() != -1) {
-//            Documento doc = new Documento();
-//            DocumentoDAO ddao = new DocumentoDAO();
-//            tableModel.removeLinha(tabelaArquivos.getSelectedRow());
-//
-////            doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
-////            
-////            ddao.deletaDocumento(doc);
-////            
-////            readJTable();
-////            
-//            //PARA MOVER O ARQUIVO PARA LIXEIRA
-//            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
-//            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA\\");
-//            origem.renameTo(new File(destino, origem.getName()));
-//
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
-//        }
+        if (tabelaArquivos.getSelectedRow() != -1) {
+            Documento doc = new Documento();
+            DocumentoDAO ddao = new DocumentoDAO();
+            tableModel.removeLinha(tabelaArquivos.getSelectedRow());
+
+           doc.setNomeDoc(tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString());
+            
+            ddao.deletaDocumento(doc);
+            
+            //PARA MOVER O ARQUIVO PARA LIXEIRA
+            File origem = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\" + nick + "\\" + tabelaArquivos.getValueAt(tabelaArquivos.getSelectedRow(), 0).toString() + "");
+            File destino = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\SERVER\\LIXEIRA\\");
+            
+//            try {
+//                FileInputStream fis = new FileInputStream(origem);
+//                InputStreamReader isr = new InputStreamReader(fis);
+//                BufferedReader br = new BufferedReader(isr);
+//                String linha = br.readLine();
+//                StringBuffer sb = new StringBuffer();
+//                while (linha != null){
+//                    sb.append(linha);
+//                    linha = br.readLine();
+//                }
+//                br.close();
+//                isr.close();
+//                fis.close();
+//                FileWriter fw = new FileWriter(destino);
+//                PrintWriter pw = new PrintWriter(fw);
+//                pw.write(sb.toString());
+//                pw.flush();
+//                pw.close();
+//                fw.close();
+//                origem.delete();
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (IOException ex) {
+//                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            
+            origem.renameTo(new File(destino, origem.getName()));
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir.");
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnRenomearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenomearActionPerformed

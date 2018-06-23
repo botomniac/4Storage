@@ -63,7 +63,6 @@ public class ArquivosTableModel extends AbstractTableModel {
         this.fireTableRowsUpdated(linha, linha);
     }
     public void adicionaLinha(Documento doc) {
-       // DocumentoDAO ddao = new DocumentoDAO();
         this.dados.add(doc); //adiciona o Documento
         this.fireTableDataChanged(); // atualiza os dados da tabela quando uma operação é realizada
     }

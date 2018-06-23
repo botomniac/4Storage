@@ -27,7 +27,7 @@ public class ControleArquivos {
 
             try { //tenta copiar arquivo passando local de origem e destino
                 copy(origem, destino);
-            } catch (IOException ex) { //caso nao consiga copiar arquivo, emite mensagem
+             } catch (IOException ex) { //caso nao consiga copiar arquivo, emite mensagem
                 System.out.println("Erro> " + ex);
             }
             
